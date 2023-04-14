@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/2000/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Warehouse Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+    <h1>Order Warehouse</h1>
+    <img th:src="@{/images/warehouse_pic.jpg}" />
+
+    <form th:action="@{/orders}" method="post" th:object="${warehouseOrder}">
+        <a th:href="@{/design}" id="another">Choose another one</a>
+        <ul>
+            <li th:each="warehouse : ${warehouseOrder.warehouses}">
+                <span th:text="${warehouse.name}">warehouse name</span>
+
+            </li>
+        </ul>
+
+        <div th:if="${#fields.hasErrors()}">
+            <span class="validationError">
+                Please correct form
+            </span>
+        </div>
+        <h3>Where do u find service?</h3>
+        <label for="deliveryName">Name: </label>
+        <input type="text" th:field="*{deliveryName}"/>
+        <label for="deliveryDistrict">District: </label>
+        <input type="text" th:field="*{deliveryDistrict}"/>
+        <label for="deliveryCity">City: </label>
+        <input type="text" th:field="*{deliveryCity}"/>
+        <label for="ccNumber">CC Nmber: </label>
+        <input type="text" th:field="*{ccNumber}"/>
+        <label for="ccExpiration">Expiration: </label>
+        <input type="text" th:field="*{ccExpiration}"/>
+        <label for="ccCVV">CVV: </label>
+        <input type="text" th:field="*{ccCVV}"/>
+
+        <input type="submit">
+    </form>
+    <h3>Your Warehouse in this order</h3>
+</body>
+
+</html>

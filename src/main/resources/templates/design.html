@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/2000/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Warehouse Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+
+<body>
+    <h1>Choose Your Warehouse</h1>
+    <img th:src="@{/images/warehouse_pic.jpg}" />
+
+    <form th:object="${warehouse}" method="post">
+        <span class="validationError"
+        th:if="${#fields.hasErrors('attributes')}"
+        th:errors="*{attributes}">Ingredient Error</span>
+
+        <div class="grid">
+            <div class="attribute-group" id="capacities">
+                <h3>Pick Your WRAP</h3>
+                <div th:each="attribute : ${capacity}">
+                    <input type="checkbox" th:field="*{attributes}" th:value="${attribute.id}"/>
+                    <span th:text="${attribute.name}">ATTRIBUTE</span><br/>
+                </div>
+            </div>
+            <div class="attribute-group" id="classes">
+                <h3>What facilities level do u prefer?</h3>
+                <div th:each="attribute : ${class}">
+                    <input type="checkbox" th:field="*{attributes}" th:value="${attribute.id}"/>
+                    <span th:text="${attribute.name}">ATTRIBUTE</span><br/>
+                </div>
+            </div>
+            <div class="attribute-group" id="space">
+                <h3>Find your room space</h3>
+                <div th:each="attribute : ${space}">
+                    <input type="checkbox" th:field="*{attributes}" th:value="${attribute.id}"/>
+                    <span th:text="${attribute.name}">ATTRIBUTE</span><br/>
+                </div>
+            </div>
+            <input type="text" th:field="*{name}">
+            <button>Выбери свой склад!</button>
+        </div>
+    </form>
+</body>
+
+</html>
